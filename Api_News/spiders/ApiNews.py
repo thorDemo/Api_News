@@ -30,7 +30,6 @@ class ApinewsSpider(scrapy.Spider):
         for news in result['data']:
             if not news['videoUrls']:
                 news['videoUrls'] = 'no'
-            comment = str(news['content']).splitlines(True)
             images = ''
             for img in news['imageUrls']:
                 images += str(img).split('/')[-1] + ','
