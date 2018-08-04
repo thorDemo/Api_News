@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
-from langconv import *
 from Api_News.items import ApiNewsItem, NewsImageItem
 from snownlp import SnowNLP
 
@@ -25,7 +24,7 @@ class ApinewsSpider(scrapy.Spider):
         result = json.loads(response.text)
         hasNext = result['hasNext']
         print(hasNext)
-        print(self.cht_to_chs(result['data'][0]['title']))
+        print(SnowNLP(result['data'][0]['title']))
         item['dataType'] = 'meishi'
         item['author'] = result['appCode']
         for news in result['data']:
@@ -38,25 +37,19 @@ class ApinewsSpider(scrapy.Spider):
             images = images.strip(',')
             item['re_id'] = news['id']
             item['videoUrls'] = news['videoUrls']
-            item['tags'] = self.cht_to_chs(','.join(str(i) for i in news['tags']))
-            item['description'] = self.cht_to_chs(','.join(str(i) for i in comment[0:3]))
-            item['title'] = self.cht_to_chs(news['title'])
+            item['tags'] = SnowNLP(','.join(str(i) for i in news['tags'])).han
+            item['title'] = SnowNLP(news['title']).han
             item['image'] = images
             item['publishDateStr'] = str(news['publishDateStr']).replace('T', ' ')
             item['quantity'] = self.comment_quantity(news['content'])
-            item['content'] = self.cht_to_chs(news['content'])
+            item['content'] = SnowNLP(news['content']).han
+            item['description'] = SnowNLP(item['content']).summary(3)
             item['likeCount'] = news['likeCount']
             item['viewCount'] = news['viewCount']
             yield item
             for image in news['imageUrls']:
                 image_item['image_urls'] = [image]
                 yield image_item
-
-    # 繁体转换为简体
-    def cht_to_chs(self, line):
-        line = Converter('zh-hans').convert(line)
-        line.encode('utf-8')
-        return line
 
     def comment_quantity(self, value):
         length = len(value)
@@ -72,6 +65,7 @@ def test_snow():
     s = SnowNLP(text)
     print(s.keywords(3))
     print(s.summary(3))
+    print(SnowNLP('其實。').sentences)
     x = s.sentences
     y = s.han
     print(x)
