@@ -22,7 +22,7 @@ class ApinewsSpider(scrapy.Spider):
         item = ApiNewsItem()
         image_item = NewsImageItem()
         result = json.loads(response.text)
-        print(result['data'][0]['title'])
+        print(SnowNLP(result['data'][0]['title']).han)
         try:
             has_next = result['hasNext']
             print(has_next)
