@@ -2,9 +2,7 @@
 from .items import JSModel
 from Api_News.items import ApiNewsItem, NewsImageItem
 from scrapy.pipelines.images import ImagesPipeline
-from scrapy.exceptions import DropItem
 import scrapy
-from peewee import *
 
 
 class ApiNewsPipeline(object):

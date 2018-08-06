@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding:utf-8 -*-
 import scrapy
 import json
 from Api_News.items import ApiNewsItem, NewsImageItem
@@ -21,7 +21,7 @@ class ApinewsSpider(scrapy.Spider):
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
-        result = json.loads(response.text.decode('utf-8'))
+        result = json.loads(response.text)
         hasNext = result['hasNext']
         print(hasNext)
         print(SnowNLP(result['data'][0]['title']))
@@ -45,7 +45,8 @@ class ApinewsSpider(scrapy.Spider):
             item['description'] = SnowNLP(item['content']).summary(3)
             item['likeCount'] = news['likeCount']
             item['viewCount'] = news['viewCount']
-            yield item
+            print(item)
+            # yield item
             # for image in news['imageUrls']:
             #     image_item['image_urls'] = [image]
             #     yield image_item
