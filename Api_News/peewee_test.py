@@ -14,7 +14,6 @@ class Person(Model):
 
 
 if __name__ == '__main__':
-    # todo
     db.connect()
     db.create_tables([Person])
 
