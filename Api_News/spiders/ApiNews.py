@@ -21,7 +21,7 @@ class ApinewsSpider(scrapy.Spider):
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
-        result = json.loads(str(response.text).encode('utf-8'))
+        result = json.dumps(response.text, ensure_ascii=False)
         print(result)
         hasNext = result['hasNext']
         print(hasNext)
