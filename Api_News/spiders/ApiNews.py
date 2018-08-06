@@ -21,14 +21,14 @@ class ApinewsSpider(scrapy.Spider):
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
-        result = json.dumps(dict(response.text), ensure_ascii=False)
+        result = json.dumps(response.text)
+        print(SnowNLP(result['data'][0]['title']))
         try:
             has_next = result['hasNext']
             print(has_next)
         except TypeError:
             print('没有数据！')
             return
-        print(SnowNLP(result['data'][0]['title']))
         item['dataType'] = 'yule'
         item['author'] = result['appCode']
         for news in result['data']:
