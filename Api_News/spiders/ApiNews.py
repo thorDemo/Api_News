@@ -24,7 +24,7 @@ class ApinewsSpider(scrapy.Spider):
         result = json.loads(response.text)
         hasNext = result['hasNext']
         print(hasNext)
-        print(SnowNLP(result['data'][0]['title']))
+        # print(SnowNLP(result['data'][0]['title']))
         item['dataType'] = 'yule'
         item['author'] = result['appCode']
         for news in result['data']:
@@ -36,13 +36,13 @@ class ApinewsSpider(scrapy.Spider):
             images = images.strip(',')
             item['re_id'] = news['id']
             item['videoUrls'] = news['videoUrls']
-            item['tags'] = SnowNLP(','.join(str(i) for i in news['tags'])).han
-            item['title'] = SnowNLP(news['title']).han
+            # item['tags'] = SnowNLP(','.join(str(i) for i in news['tags'])).han
+            # item['title'] = SnowNLP(news['title']).han
             item['image'] = images
             item['publishDateStr'] = str(news['publishDateStr']).replace('T', ' ')
             item['quantity'] = self.comment_quantity(news['content'])
-            item['content'] = SnowNLP(news['content']).han
-            item['description'] = SnowNLP(item['content']).summary(3)
+            # item['content'] = SnowNLP(news['content']).han
+            # item['description'] = SnowNLP(item['content']).summary(3)
             item['likeCount'] = news['likeCount']
             item['viewCount'] = news['viewCount']
             # yield item
