@@ -47,10 +47,10 @@ class ApinewsSpider(scrapy.Spider):
             item['likeCount'] = news['likeCount']
             item['viewCount'] = news['viewCount']
             print(item)
-            # yield item
-            # for image in news['imageUrls']:
-            #     image_item['image_urls'] = [image]
-            #     yield image_item
+            yield item
+            for image in news['imageUrls']:
+                image_item['image_urls'] = [image]
+                yield image_item
 
     def comment_quantity(self, value):
         length = len(value)
