@@ -21,8 +21,8 @@ class ApinewsSpider(scrapy.Spider):
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
-        result = json.loads(response.text.encode('utf-8').decode('unicode_escape'))
-        print(result['data'][0]['title'])
+        result = json.loads(response.text)
+        print(result['data'][0]['title'].encode('utf-8').decode('unicode_escape'))
         try:
             has_next = result['hasNext']
             print(has_next)
@@ -40,13 +40,13 @@ class ApinewsSpider(scrapy.Spider):
             images = images.strip(',')
             item['re_id'] = news['id']
             item['videoUrls'] = news['videoUrls']
-            item['tags'] = SnowNLP(','.join(str(i) for i in news['tags'])).han
-            item['title'] = SnowNLP(news['title']).han
+            item['tags'] = SnowNLP(','.join(str(i).encode('utf-8').decode('unicode_escape') for i in news['tags'])).han
+            item['title'] = SnowNLP(news['title'].encode('utf-8').decode('unicode_escape')).han
             item['image'] = images
             item['publishDateStr'] = str(news['publishDateStr']).replace('T', ' ')
             item['quantity'] = self.comment_quantity(news['content'])
-            item['content'] = SnowNLP(news['content']).han
-            item['description'] = SnowNLP(item['content']).summary(3)
+            item['content'] = SnowNLP(news['content'].encode('utf-8').decode('unicode_escape')).han
+            item['description'] = SnowNLP(item['content'].encode('utf-8').decode('unicode_escape')).summary(3)
             item['likeCount'] = news['likeCount']
             item['viewCount'] = news['viewCount']
             print(item)
@@ -60,5 +60,3 @@ class ApinewsSpider(scrapy.Spider):
         utf8_length = len(value.encode('utf-8'))
         length = (utf8_length - length) / 2 + length
         return length
-
-"\u3010\u53f0\u7063\u76f4\u64ca\u3011\u300a\u8207\u795e\u540c\u884c\u300b\u4e0b\u96c6\u8a18\u62db\u72c2\u6d3e\u5fc3 \u9a5a\u559c\u8cc0\u91d1\u9999\u8d7718\u6b72\u725b\u4e00"
