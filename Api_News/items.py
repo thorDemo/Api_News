@@ -8,6 +8,7 @@
 import scrapy
 from peewee import *
 
+# db = MySQLDatabase("station", host='23.110.211.170', port=3306, user='station', passwd='password', charset='utf8')
 db = MySQLDatabase("station", host='127.0.0.1', port=3306, user='root', passwd='123456', charset='utf8')
 
 
@@ -29,8 +30,8 @@ class ApiNewsItem(scrapy.Item):
     viewCount = scrapy.Field()
 
 
-class JSModel_newsarticle(Model):
-    re_id = CharField(max_length=100)
+class JSModel(Model):
+    re_id = CharField(max_length=100, unique=True)
     author = CharField(max_length=100)
     title = CharField(max_length=200)
     keyword = CharField(max_length=200)
@@ -48,10 +49,17 @@ class JSModel_newsarticle(Model):
     source = CharField(max_length=200)
 
     class Meta:
+        table_name = 'JSModel_newsarticle'
         database = db
 
 
-# 图片下载对象
+# image item
 class NewsImageItem(scrapy.Item):
     image_urls = scrapy.Field()
     images = scrapy.Field()
+
+
+
+
+
+

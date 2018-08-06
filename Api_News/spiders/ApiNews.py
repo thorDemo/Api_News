@@ -45,7 +45,7 @@ class ApinewsSpider(scrapy.Spider):
             item['description'] = SnowNLP(item['content']).summary(3)
             item['likeCount'] = news['likeCount']
             item['viewCount'] = news['viewCount']
-            yield item
+            # yield item
             for image in news['imageUrls']:
                 image_item['image_urls'] = [image]
                 yield image_item
@@ -56,16 +56,3 @@ class ApinewsSpider(scrapy.Spider):
         length = (utf8_length - length) / 2 + length
         return length
 
-
-def test_snow():
-    text = """
-    其實。。都預咗啦。。逢親D咩手工乜，古早乜，一有大量需求。。
-    """
-    s = SnowNLP(text)
-    print(s.keywords(3))
-    print(s.summary(3))
-    print(SnowNLP('其實。').sentences)
-    x = s.sentences
-    y = s.han
-    print(x)
-    print(y)

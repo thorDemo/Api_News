@@ -14,11 +14,11 @@ BOT_NAME = 'Api_News'
 SPIDER_MODULES = ['Api_News.spiders']
 NEWSPIDER_MODULE = 'Api_News.spiders'
 
-MYSQL_HOST = '103.56.136.105'
-MYSQL_DBNAME = 'news'
-MYSQL_USER = 'root'
-MYSQL_PASSWD = 'password'
-MYSQL_PORT = 3306
+# MYSQL_HOST = '103.56.136.105'
+# MYSQL_DBNAME = 'news'
+# MYSQL_USER = 'root'
+# MYSQL_PASSWD = 'password'
+# MYSQL_PORT = 3306
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'Api_News (+http://www.yourdomain.com)'
@@ -76,8 +76,8 @@ ITEM_PIPELINES = {
    'Api_News.pipelines.ApiNewsPipeline': 300,
    'Api_News.pipelines.MyImagesPipeline': 100,
 }
-IMAGES_STORE = '/www/wwwroot/Special/JianShu/JSModel/templates/JSModel/static/img/'
-# IMAGES_STORE = '/Users/hexiaotian/PycharmProjects/JianShu/JSModel/templates/JSModel/static/img/'
+# IMAGES_STORE = '/www/wwwroot/Special/JianShu/JSModel/templates/JSModel/static/img/'
+IMAGES_STORE = '/Users/hexiaotian/PycharmProjects/JianShu/JSModel/templates/JSModel/static/img/'
 # 该字段的值为XxxItem中定义的存储图片链接的image_urls字段
 IMAGES_URLS_FIELD = 'image_urls'
 # 该字段的值为XxxItem中定义的存储图片信息的images字段
