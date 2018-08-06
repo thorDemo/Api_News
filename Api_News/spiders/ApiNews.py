@@ -11,17 +11,17 @@ class ApinewsSpider(scrapy.Spider):
     api = 'OrTqAiyVROsmXuQMR6Lmr7eENi5GZX7o6swyVh1KcHHu7nGccWjTgLEBWW7WtqVD'
     start_urls = [
         'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=10028&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=10028&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=10028&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=10028&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=10028&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=10028&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=10028&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=10028&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=10028&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=10028&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=10028&apikey=%s' % api,
     ]
 
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
-        result = json.loads(eval(str(response.body).encode('utf-8').decode('unicode_escape')))
+        result = json.loads(response.text.encode('utf-8').decode('unicode_escape'))
         print(result['data'][0]['title'])
         try:
             has_next = result['hasNext']
