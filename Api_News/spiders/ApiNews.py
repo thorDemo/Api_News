@@ -40,7 +40,7 @@ class ApinewsSpider(scrapy.Spider):
             images = images.strip(',')
             item['re_id'] = news['id']
             item['videoUrls'] = news['videoUrls']
-            item['tags'] = SnowNLP(','.join(str(i) for i in news['tags'])).han
+            item['tags'] = SnowNLP(','.join(i for i in news['tags'])).han
             item['title'] = SnowNLP(news['title']).han
             item['image'] = images
             item['publishDateStr'] = str(news['publishDateStr']).replace('T', ' ')
