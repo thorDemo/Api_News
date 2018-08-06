@@ -3,6 +3,8 @@ import scrapy
 import json
 from Api_News.items import ApiNewsItem, NewsImageItem
 from snownlp import SnowNLP
+import hashlib
+from scrapy.utils.python import to_bytes
 
 
 class ApinewsSpider(scrapy.Spider):
@@ -11,18 +13,18 @@ class ApinewsSpider(scrapy.Spider):
     api = 'OrTqAiyVROsmXuQMR6Lmr7eENi5GZX7o6swyVh1KcHHu7nGccWjTgLEBWW7WtqVD'
     start_urls = [
         'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=10028&apikey=%s' % api,
-        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=10028&apikey=%s' % api,
-        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=10028&apikey=%s' % api,
-        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=10028&apikey=%s' % api,
-        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=10028&apikey=%s' % api,
-        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=10028&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=10028&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=10028&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=10028&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=10028&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=10028&apikey=%s' % api,
     ]
 
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
         result = json.loads(response.text)
-        print(SnowNLP(result['data'][0]['title']).han)
+        # print(SnowNLP(result['data'][0]['title']).han)
         try:
             has_next = result['hasNext']
             print(has_next)
@@ -36,7 +38,7 @@ class ApinewsSpider(scrapy.Spider):
                 news['videoUrls'] = 'no'
             images = ''
             for img in news['imageUrls']:
-                images += str(img).split('/')[-1] + ','
+                images += hashlib.sha1(to_bytes(img)).hexdigest() + '.jpg,'
             images = images.strip(',')
             item['re_id'] = news['id']
             item['videoUrls'] = news['videoUrls']
