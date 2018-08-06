@@ -21,7 +21,7 @@ class ApinewsSpider(scrapy.Spider):
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
-        print(response.body)
+        print(str(response.body).encode('utf-8').decode('unicode_escape'))
         result = json.loads(response.text)
         print(SnowNLP(result['data'][0]['title']))
         try:
@@ -61,3 +61,5 @@ class ApinewsSpider(scrapy.Spider):
         utf8_length = len(value.encode('utf-8'))
         length = (utf8_length - length) / 2 + length
         return length
+
+"\u3010\u53f0\u7063\u76f4\u64ca\u3011\u300a\u8207\u795e\u540c\u884c\u300b\u4e0b\u96c6\u8a18\u62db\u72c2\u6d3e\u5fc3 \u9a5a\u559c\u8cc0\u91d1\u9999\u8d7718\u6b72\u725b\u4e00"
