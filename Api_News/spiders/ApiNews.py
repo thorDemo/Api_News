@@ -22,6 +22,7 @@ class ApinewsSpider(scrapy.Spider):
         item = ApiNewsItem()
         image_item = NewsImageItem()
         result = json.dumps(response.text)
+        print(result)
         print(SnowNLP(result['data'][0]['title']))
         try:
             has_next = result['hasNext']
@@ -60,4 +61,3 @@ class ApinewsSpider(scrapy.Spider):
         utf8_length = len(value.encode('utf-8'))
         length = (utf8_length - length) / 2 + length
         return length
-
