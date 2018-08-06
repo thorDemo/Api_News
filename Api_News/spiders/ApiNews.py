@@ -21,8 +21,8 @@ class ApinewsSpider(scrapy.Spider):
     def parse(self, response):
         item = ApiNewsItem()
         image_item = NewsImageItem()
+        print(response.text)
         result = json.loads(response.text)
-        print(result)
         print(SnowNLP(result['data'][0]['title']))
         try:
             has_next = result['hasNext']
