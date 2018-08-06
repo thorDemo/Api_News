@@ -22,7 +22,9 @@ class ApinewsSpider(scrapy.Spider):
         item = ApiNewsItem()
         image_item = NewsImageItem()
         result = json.loads(response.text)
+        print(result['data'][0]['title'])
         print(result['data'][0]['title'].encode('utf-8').decode('unicode_escape'))
+        return
         try:
             has_next = result['hasNext']
             print(has_next)
@@ -40,13 +42,13 @@ class ApinewsSpider(scrapy.Spider):
             images = images.strip(',')
             item['re_id'] = news['id']
             item['videoUrls'] = news['videoUrls']
-            item['tags'] = SnowNLP(','.join(str(i).encode('utf-8').decode('unicode_escape') for i in news['tags'])).han
-            item['title'] = SnowNLP(news['title'].encode('utf-8').decode('unicode_escape')).han
+            item['tags'] = SnowNLP(','.join(str(i) for i in news['tags'])).han
+            item['title'] = SnowNLP(news['title']).han
             item['image'] = images
             item['publishDateStr'] = str(news['publishDateStr']).replace('T', ' ')
             item['quantity'] = self.comment_quantity(news['content'])
-            item['content'] = SnowNLP(news['content'].encode('utf-8').decode('unicode_escape')).han
-            item['description'] = SnowNLP(item['content'].encode('utf-8').decode('unicode_escape')).summary(3)
+            item['content'] = SnowNLP(news['content']).han
+            item['description'] = SnowNLP(item['content']).summary(3)
             item['likeCount'] = news['likeCount']
             item['viewCount'] = news['viewCount']
             print(item)
