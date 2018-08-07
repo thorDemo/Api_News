@@ -27,12 +27,19 @@ class ApinewsSpider(scrapy.Spider):
         # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=10028&apikey=%s' % api,
         # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=10028&apikey=%s' % api,
         # 娱乐
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=100213&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=100213&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=100213&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=100213&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=100213&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=100213&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=100213&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=100213&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=100213&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=100213&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=100213&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=100213&apikey=%s' % api,
+        # 娱乐
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=100214&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=100214&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=100214&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=100214&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=100214&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=100214&apikey=%s' % api,
     ]
 
     def parse(self, response):
