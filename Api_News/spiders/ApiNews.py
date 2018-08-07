@@ -34,12 +34,19 @@ class ApinewsSpider(scrapy.Spider):
         # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=100213&apikey=%s' % api,
         # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=100213&apikey=%s' % api,
         # 娱乐
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=100214&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=100214&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=100214&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=100214&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=100214&apikey=%s' % api,
-        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=100214&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=100214&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=100214&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=100214&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=100214&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=100214&apikey=%s' % api,
+        # 'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=100214&apikey=%s' % api,
+        # 娱乐
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=0&catid=0&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=20&catid=0&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=40&catid=0&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=60&catid=0&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=80&catid=0&apikey=%s' % api,
+        'https://47.90.63.143/news/appledailyhk?type=2&pageToken=100&catid=0&apikey=%s' % api,
     ]
 
     def parse(self, response):
@@ -53,7 +60,7 @@ class ApinewsSpider(scrapy.Spider):
         except TypeError:
             print('没有数据！')
             return
-        item['dataType'] = 'tiyu'
+        item['dataType'] = 'jiaodian'
         item['author'] = result['appCode']
         for news in result['data']:
             if not news['videoUrls']:
