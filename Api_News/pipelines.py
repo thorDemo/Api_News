@@ -47,8 +47,8 @@ class MyImagesPipeline(ImagesPipeline):
             for image_url in item['image_urls']:
                 yield scrapy.Request(image_url)
 
-    def file_path(self, request, response=None, info=None):
-        image_guid = request.url
-        name = str(image_guid).split('/')[-1]
-        return 'full/%s' % name
+    # def file_path(self, request, response=None, info=None):
+    #     image_guid = request.url
+    #     name = str(image_guid).split('/')[-1]
+    #     return 'full/%s' % name
 
