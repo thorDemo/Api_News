@@ -8,8 +8,10 @@
 import scrapy
 from peewee import *
 
-db = MySQLDatabase("station", host='23.110.211.170', port=3306, user='station', passwd='password', charset='utf8')
+db = MySQLDatabase("station", host='23.110.211.170', port=3339, user='station', passwd='123456', charset='utf8')
 # db = MySQLDatabase("station", host='127.0.0.1', port=3306, user='root', passwd='123456', charset='utf8')
+# db = MySQLDatabase("alizhizhuchi", host='23.110.211.170', port=3339, user='alizhizhuchi', passwd='3b86aba28d1ffc65', charset='utf8')
+# db = MySQLDatabase("alizhizhuchi", host='142.234.162.99', port=3339, user='alizhizhuchi', passwd='c7196f1d85e99200', charset='utf8')
 
 
 class ApiNewsItem(scrapy.Item):
@@ -50,6 +52,18 @@ class JSModel(Model):
 
     class Meta:
         table_name = 'JSModel_newsarticle'
+        database = db
+
+
+class AliTitle(Model):
+    title = CharField(max_length=255, unique=True)
+    content = TextField()
+    yuan_id = IntegerField()
+    object_id = IntegerField()
+    caiji_id = IntegerField()
+
+    class Meta:
+        table_name = 'c_title'
         database = db
 
 

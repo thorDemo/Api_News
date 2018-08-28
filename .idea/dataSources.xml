@@ -19,7 +19,7 @@
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://23.110.211.170:3306/station</jdbc-url>
+      <jdbc-url>jdbc:mysql://23.110.211.170:3339/station</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
@@ -43,11 +43,25 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="station@209.58.128.89" uuid="9be6879b-0bb6-46d7-abfb-bb7d791beeb7">
+    <data-source source="LOCAL" name="alizhizhuchi@23.110.211.170" uuid="2a0e7a9a-c2d6-4c15-aea2-ca2d448f40fd">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://209.58.128.89:3306/station</jdbc-url>
+      <jdbc-url>jdbc:mysql://23.110.211.170:3339/alizhizhuchi</jdbc-url>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="alizhizhuchi@142.234.162.99" uuid="3d8149ce-1cf5-4787-8cdb-dbefe7d8ea7d">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://142.234.162.99:3339/alizhizhuchi</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

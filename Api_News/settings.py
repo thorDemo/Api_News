@@ -24,7 +24,7 @@ NEWSPIDER_MODULE = 'Api_News.spiders'
 #USER_AGENT = 'Api_News (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 32
@@ -44,12 +44,27 @@ DOWNLOAD_DELAY = 0.25
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
+# DEFAULT_REQUEST_HEADERS = {
+#     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+#     'accept-language': 'zh-CN,zh;q=0.8',
+#     # 'referer': 'https://47.90.63.143/',
+#     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36”)',
+#     # 'Host': '47.90.63.143'
+# }
 DEFAULT_REQUEST_HEADERS = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'accept-language': 'zh-CN,zh;q=0.8',
-    # 'referer': 'https://47.90.63.143/',
-    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36”)',
-    # 'Host': '47.90.63.143'
+    'Accept': 'text/html, */*; q=0.01',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
+    'Connection': 'keep-alive',
+    # 'Content-Length': 669,
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'referer': 'http://www.alizhizhuchi.com/weiyuanchuang/',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+    'Host': 'www.alizhizhuchi.com',
+    'Origin': 'http://www.alizhizhuchi.com',
+    'Cookie': 'Hm_lvt_684c6f8605dbf06d0e24d46856d86873=1534170476,1534422661,1534682022,1535023841; Hm_lpvt_684c6f8605dbf06d0e24d46856d86873=1535023908',
+    'X-Requested-With': 'XMLHttpRequest',
+
 }
 
 # Enable or disable spider middlewares
